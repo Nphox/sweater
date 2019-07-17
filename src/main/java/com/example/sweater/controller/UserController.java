@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @GetMapping("{user}")
-    public String userEdit(@PathVariable User user, Model model){
+    public String userEditForm(@PathVariable User user, Model model){
         model.addAttribute("user", user);
         model.addAttribute("roles", Role.values());
         return "userEdit";
@@ -44,7 +44,7 @@ public class UserController {
         user.getRoles().clear();
         Set<String> roles = Arrays.stream(Role.values()).map(Role::name).collect(Collectors.toSet());
         for(String key: form.keySet()){
-            if(roles.contains(key){
+            if(roles.contains(key)){
                 user.getRoles().add(Role.valueOf(key));
             }
         }
